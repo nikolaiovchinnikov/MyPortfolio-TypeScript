@@ -1,7 +1,8 @@
-// import CIcon from '@coreui/icons-react';
-// import { cilSearch } from '@coreui/icons';
+import CIcon from '@coreui/icons-react';
+import  {CButton}  from '@coreui/react'
+import  {cilSearch}  from '@coreui/icons';
 import styles from './FilmHeader.module.scss';
-
+import '@coreui/coreui/dist/css/coreui.min.css'
 interface IFilmHeader {
     isColorMod:boolean
     changeColorMod():void
@@ -22,14 +23,18 @@ const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
                     </div>
                     <div className={styles.BoxSearch}>
                         <input className={styles.input} type="text" />
-                        <button className="btnsInput">
-                            {/* <CIcon className='header_search_btn_icon' icon={cilSearch}/> */}
+                        
+                        <button className={styles.btnsInput}>
+                            <CIcon className={styles.icon} icon={cilSearch}/>
                         </button>
                     </div>
-
-                    <button onClick={changeColorMod}>
+                    <CButton 
+                        size='sm'
+                        onClick={changeColorMod} 
+                        color="dark" 
+                        variant="outline">
                         {isColorMod?'Темный режим':'Светлый режим'}
-                    </button>
+                    </CButton>
                 </div>
            </div>
         </header>
