@@ -13,10 +13,15 @@
 .img {
     width: 92%;
     height: 456px;
-    box-shadow: inset 0px 0px 27px 41px #000;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+.imgW {
+    box-shadow: inset 0px 0px 27px 41px #ffffff;
+}
+.imgB {
+    box-shadow: inset 0px 0px 27px 41px #000000;
 }
 
 // .top:nth-child(odd)

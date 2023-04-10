@@ -1,4 +1,5 @@
 import CIcon from '@coreui/icons-react';
+import { useState } from 'react';
 import  {
     CButton, 
     CFormInput, 
@@ -13,24 +14,42 @@ import styles from './FilmHeader.module.scss';
 import '@coreui/coreui/dist/css/coreui.min.css'
 import { IFilmHeader } from '../../interface/interfaceApp';
 
-
 const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
-
+    const [isShowDropdown, setIsShowDropdown] = useState(false)
+    const chengeShowDropdown = () => {
+        let copyIsShowDropdown = isShowDropdown;
+        copyIsShowDropdown = true
+        setIsShowDropdown(copyIsShowDropdown)
+    }
+    const chengeHidenDropdown = () => {
+        let copyIsShowDropdown = isShowDropdown;
+        copyIsShowDropdown = false
+        setIsShowDropdown(copyIsShowDropdown)
+    }
+    let specialCase = isColorMod? styles.showDrop : styles.showDropWhite
     let colorModStyle = isColorMod?'dark':'light';
     return (
         <header className={[styles.FilmHeader, colorModStyle].join(' ')}>
             <div className="myContainer">
                 <div className={styles.filmHeaderBOX}>
-                    <CDropdown alignment={{ lg: 'start' }} variant="btn-group" dark={isColorMod}>
-                        <div className={styles.Boxlogo}>
+                    <CDropdown 
+                    onHide={chengeHidenDropdown}
+                    onShow={chengeShowDropdown} 
+                    alignment={{ lg: 'start' }} 
+                    variant="btn-group" 
+                    dark={isColorMod}>
+                        <div className={[styles.Boxlogo, isShowDropdown ? specialCase : ""].join(" ")}>
                             <CDropdownToggle color={isColorMod?'dark':'light'}>
                                 <img className={styles.logo} src="img/logo.png" alt="logo" />
                             </CDropdownToggle>
-                            <h3 className={[styles.text,colorModStyle].join(' ')}>
-                                Поиск кино
+                            <h3 
+                            className={
+                            [styles.text, isShowDropdown ? specialCase : colorModStyle]
+                            .join(' ')}>
+                            Поиск кино
                             </h3>
                         </div>
-                        <CDropdownMenu>
+                        <CDropdownMenu style={{width:'100%'}} >
                             <CDropdownItem href="#">Action</CDropdownItem>
                             <CDropdownItem href="#">Another action</CDropdownItem>
                             <CDropdownItem href="#">Something else here</CDropdownItem>
@@ -41,14 +60,15 @@ const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
 
                     <div className={styles.BoxSearch}>
                         <CFormInput
-                        style={{width:'340px'}}
+                        className={colorModStyle}
+                        style={{border:isColorMod?"1px solid #fff":"1px solid #000",width:'340px'}}
                         type="text"
                         size="sm"
                         placeholder="Введите запрос"
                         aria-label="sm input example"
                         label={
                         <button className={styles.btnsInput}>
-                            <CIcon icon={cilSearch}/>
+                            <CIcon style={{color:isColorMod?"#fff":"#000"}} icon={cilSearch}/>
                         </button>}
                         />
                     </div>

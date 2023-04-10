@@ -3,12 +3,13 @@ import styles from './FilmItemGrid.module.scss'
 // import { useState,useEffect } from "react";
 // import ContainerCard from "../ContinerCard/ContinerCard";
 // import { getRespons } from "../../../../scripts/ajaxMetods";
-// interface IFilmApi {
-//     posterUrlPreview:string,
-//     filmId:number
-// }
+interface IFilmItemGrid {
+    // posterUrlPreview:string,
+    // filmId:number
+    isColorMod:boolean
+}
 // let isStatus = true
-const FilmItemGrid = () => {
+const FilmItemGrid = ({isColorMod}:IFilmItemGrid) => {
     // const [ films, setFilms ] = useState([[],[],[],[]] as IFilmApi[][] )
     // let urlFilms = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1'
     // const splitArray = (arr:any[]):any[] => {
@@ -51,7 +52,7 @@ const FilmItemGrid = () => {
                         {[1,2,3,4,5].map((value => {
                             return <div 
                             style={{backgroundImage:`url(${'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdv61p5TcNGsQEKW8B9L0neRCcKxQ5Xzzmv-Kfir1A&s'})`}} 
-                            className={[styles.card, styles.top, styles.shadowTop].join(' ')}
+                            className={[styles.card, styles.top,isColorMod?styles.shadowTop:''].join(' ')}
                             key={value}>
                         </div>
                         }))}
@@ -78,7 +79,7 @@ const FilmItemGrid = () => {
                         {[1,2,3,4,5].map((value => {
                             return <div 
                             style={{backgroundImage:`url(${'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdv61p5TcNGsQEKW8B9L0neRCcKxQ5Xzzmv-Kfir1A&s'})`}} 
-                            className={[styles.card, styles.bot, styles.shadowBot].join(' ')}
+                            className={[styles.card, styles.bot,isColorMod? styles.shadowBot:''].join(' ')}
                             key={value}>
                         </div>
                         }))}

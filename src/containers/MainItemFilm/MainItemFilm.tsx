@@ -35,7 +35,7 @@ const MainItemFilm = ({isColorMod}:IFilmApi) => {
             <CCard style={{border:'none'}} className={["my-5 ",isColorMod?'dark':'light'].join(" ")}>
                 <CRow className="g-0">
                 <CCol md={4}>
-                    <div className={styles.img} style={{backgroundImage:`url(${"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdv61p5TcNGsQEKW8B9L0neRCcKxQ5Xzzmv-Kfir1A&s"})`}}>
+                    <div className={[styles.img, isColorMod?styles.imgB:styles.imgW].join(' ')} style={{backgroundImage:`url(${"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdv61p5TcNGsQEKW8B9L0neRCcKxQ5Xzzmv-Kfir1A&s"})`}}>
                     </div>
                 </CCol>
                 <CCol md={8}>

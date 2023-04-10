@@ -9,9 +9,11 @@ import  {
     CCardBody,
     CCardText
 } from '@coreui/react'
+interface IFilmNewsTops {
+    isColorMod:boolean 
+}
 
-
-const FilmNewsTops = () => {
+const FilmNewsTops = ({isColorMod}:IFilmNewsTops) => {
     return (
         <CCard style={{border:'none',backgroundColor:'transparent'}} className='my-5 myContainer'>
             <CCardHeader style={{backgroundColor:'transparent'}} component="h1">Списки</CCardHeader>
@@ -32,7 +34,7 @@ const FilmNewsTops = () => {
                 <CCardImage style={{height:"350px"}} orientation="top" src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdv61p5TcNGsQEKW8B9L0neRCcKxQ5Xzzmv-Kfir1A&s'} />
                 </CCard>
 
-                <div style={{height:"auto",width:"2px",backgroundColor:"black"}}></div>
+                <div className={!isColorMod?'dark':'light'} style={{height:"auto",width:"2px",backgroundColor:"black"}}></div>
 
                 <CCard className={styles.cardItems}>
                 <CCardBody className={styles.cardBody} >
@@ -48,7 +50,7 @@ const FilmNewsTops = () => {
                 <CCardImage style={{height:"350px"}} orientation="top" src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdv61p5TcNGsQEKW8B9L0neRCcKxQ5Xzzmv-Kfir1A&s'} />
                 </CCard>
 
-                <div style={{height:"auto",width:"2px",backgroundColor:"black"}}></div>
+                <div className={!isColorMod?'dark':'light'} style={{height:"auto",width:"2px",backgroundColor:"black"}}></div>
                 
                 <CCard className={styles.cardItems}>
                 <CCardBody className={styles.cardBody} >

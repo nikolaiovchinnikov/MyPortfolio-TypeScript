@@ -24,8 +24,8 @@ const MainFilmPage = () => {
             />
             <div className={isColorMod?'dark':'light'}>
                 <MainItemFilm isColorMod={isColorMod} />
-                <FilmItemGrid/>
-                <FilmNewsTops/>
+                <FilmItemGrid isColorMod={isColorMod} />
+                <FilmNewsTops isColorMod={isColorMod} />
             </div>
             
         </>
