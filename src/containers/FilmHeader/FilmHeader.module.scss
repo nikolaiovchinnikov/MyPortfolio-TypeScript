@@ -1,6 +1,6 @@
 
 .FilmHeader {
-    background-color: #1d1b1b;
+    
     height: 70px;
 }
 .filmHeaderBOX {
@@ -14,24 +14,17 @@
     justify-content: space-between;
 }
 .logo {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 53px;
 }
 .text {
     margin-left: 20px;
-    color: #fff;
     font-size: 30px;
+    font-weight: 700;
 }
 .BoxSearch{
     position: relative;
     display: flex;
-}
-.input {
-    border-radius: 5px;
-    background-color: #292525;
-    width: 300px;
-    height: 30px;
-    background-color: #ffffff00;
 }
 .btnsInput {
     position: absolute;
@@ -40,9 +33,4 @@
     height: 100%;
     border-radius: 3px;
     background: none;
-}
-.icon {
-    width: 20px;
-    color: #fff;
-
 }

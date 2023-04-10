@@ -1,44 +1,69 @@
 import CIcon from '@coreui/icons-react';
-import  {CButton}  from '@coreui/react'
+import  {
+    CButton, 
+    CFormInput, 
+    CDropdown, 
+    CDropdownToggle, 
+    CDropdownMenu, 
+    CDropdownItem,
+    CDropdownDivider
+} from '@coreui/react'
 import  {cilSearch}  from '@coreui/icons';
 import styles from './FilmHeader.module.scss';
 import '@coreui/coreui/dist/css/coreui.min.css'
-interface IFilmHeader {
-    isColorMod:boolean
-    changeColorMod():void
-}
+import { IFilmHeader } from '../../interface/interfaceApp';
+
+
 const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
-    // let classColor = isColorMod?'dark':'white';
-    // let btnClass = ['btnColor', classColor];
-    // console.log(styles)
+
+    let colorModStyle = isColorMod?'dark':'light';
     return (
-        <header className={styles.FilmHeader}>
+        <header className={[styles.FilmHeader, colorModStyle].join(' ')}>
             <div className="container">
                 <div className={styles.filmHeaderBOX}>
-                    <div className={styles.Boxlogo}>
-                        <img className={styles.logo} src="img/logo.png" alt="logo" />
-                        <h3 className={styles.text}>
-                            Поиск кино
-                        </h3>
-                    </div>
+                    <CDropdown alignment={{ lg: 'start' }} variant="btn-group" dark={isColorMod}>
+                        <div className={styles.Boxlogo}>
+                            <CDropdownToggle color={isColorMod?'dark':'light'}>
+                                <img className={styles.logo} src="img/logo.png" alt="logo" />
+                            </CDropdownToggle>
+                            <h3 className={[styles.text,colorModStyle].join(' ')}>
+                                Поиск кино
+                            </h3>
+                        </div>
+                        <CDropdownMenu>
+                            <CDropdownItem href="#">Action</CDropdownItem>
+                            <CDropdownItem href="#">Another action</CDropdownItem>
+                            <CDropdownItem href="#">Something else here</CDropdownItem>
+                            <CDropdownDivider />
+                            <CDropdownItem href="#">Separated link</CDropdownItem>
+                        </CDropdownMenu>
+                    </CDropdown>
+
                     <div className={styles.BoxSearch}>
-                        <input className={styles.input} type="text" />
-                        
+                        <CFormInput
+                        style={{width:'340px'}}
+                        type="text"
+                        size="sm"
+                        placeholder="Введите запрос"
+                        aria-label="sm input example"
+                        label={
                         <button className={styles.btnsInput}>
-                            <CIcon className={styles.icon} icon={cilSearch}/>
-                        </button>
+                            <CIcon icon={cilSearch}/>
+                        </button>}
+                        />
                     </div>
+
                     <CButton 
+                        style={{width:'150px'}}
                         size='sm'
                         onClick={changeColorMod} 
-                        color="dark" 
+                        color={!isColorMod ? 'dark' : 'light'} 
                         variant="outline">
-                        {isColorMod?'Темный режим':'Светлый режим'}
+                        {!isColorMod ? 'Темный режим' : 'Светлый режим'}
                     </CButton>
                 </div>
            </div>
         </header>
-                
     )
 }
 export default FilmHeader
