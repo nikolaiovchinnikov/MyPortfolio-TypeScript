@@ -2,6 +2,8 @@
 import { useState } from 'react'
 import FilmHeader from '../../../components/FilmHeader/FilmHeader';
 import MainItemFilm from '../../../containers/MainItemFilm/MainItemFilm';
+import FilmItemGrid from '../../../containers/FilmItemGrid/FilmItemGrid';
+import FilmNewsTops from '../../../containers/FilmNewsTops/FilmNewsTops';
 const MainFilmPage = () => {
     const [isColorMod, setColor] = useState(false)
     const changecolorMod = () => {
@@ -22,6 +24,8 @@ const MainFilmPage = () => {
             />
             <div className={isColorMod?'dark':'light'}>
                 <MainItemFilm isColorMod={isColorMod} />
+                <FilmItemGrid/>
+                <FilmNewsTops/>
             </div>
             
         </>

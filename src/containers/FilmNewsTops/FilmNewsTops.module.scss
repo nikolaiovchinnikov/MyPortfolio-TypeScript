@@ -1,0 +1,16 @@
+.cardItems {
+    border: none;
+    height: 581px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.cardBody {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.cardText {
+    display:flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,22 @@
+.card
+    {width: 249px;
+    height: 390px;
+    background-position: center;
+    background-size: cover;}
+.containerCard 
+    {display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;}
+.top:nth-child(odd)
+    {transform: translate(0,20px);}
+.bot:nth-child(odd)
+    {transform: translate(0,20px);}
+.top:nth-child(even)
+    {transform: translate(0,-20px);}
+.bot:nth-child(even)
+    {transform: translate(0,-20px);}
+
+.shadowTop
+    {box-shadow: inset 0px 55px 26px 0px #000000;}
+.shadowBot
+    {box-shadow: inset 0px -58px 38px 0px #000000;}
