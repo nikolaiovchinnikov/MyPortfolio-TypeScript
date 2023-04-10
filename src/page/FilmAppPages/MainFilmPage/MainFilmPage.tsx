@@ -1,6 +1,7 @@
 // import style from './MainFilmPage.module.scss'
 import { useState } from 'react'
-import FilmHeader from '../../../containers/FilmHeader/FilmHeader';
+import FilmHeader from '../../../components/FilmHeader/FilmHeader';
+import MainItemFilm from '../../../containers/MainItemFilm/MainItemFilm';
 const MainFilmPage = () => {
     const [isColorMod, setColor] = useState(false)
     const changecolorMod = () => {
@@ -19,6 +20,10 @@ const MainFilmPage = () => {
                 isColorMod={isColorMod}
                 changeColorMod={changecolorMod}
             />
+            <div className={isColorMod?'dark':'light'}>
+                <MainItemFilm isColorMod={isColorMod} />
+            </div>
+            
         </>
     )
 }

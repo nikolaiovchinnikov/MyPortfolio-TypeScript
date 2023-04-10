@@ -1,0 +1,71 @@
+.boxItemImg {
+    display: flex;
+    justify-content: center;
+}
+
+
+.textTop{
+    font-size: 50px;
+}
+.textMid {
+    font-size: 20px;
+}
+.img {
+    width: 92%;
+    height: 456px;
+    box-shadow: inset 0px 0px 27px 41px #000;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+// .top:nth-child(odd)
+//     transform: translate(0,20px)
+// .bot:nth-child(odd)
+//     transform: translate(0,20px)
+// .top:nth-child(even)
+//     transform: translate(0,-20px)
+// .bot:nth-child(even)
+//     transform: translate(0,-20px)
+// .shadow
+//     box-shadow: inset 0px 0px 27px 41px #000
+// .shadow_top
+//     box-shadow: inset 0px 55px 26px 0px #000000
+// .shadow_bot
+//     box-shadow: inset 0px -58px 38px 0px #000000
+
+
+// .titleFilms
+    
+//     &_blockInfo
+//         display: flex
+//         justify-content: center
+//         padding: 100px 0 100px 0
+//         width: 100%
+//         display: flex
+
+//         &_text
+//             display: flex
+//             flex-direction: column
+//             margin-left: 50px
+//             color: #fff
+//             width: 400px
+//             &_top
+//                 font-size: 40px
+//             &_yers
+//                 font-size: 15px
+//                 margin-bottom: 30px
+//             &_bot
+//                 font-size: 18px
+//             &_btns
+//                 display: flex
+//                 justify-content: space-evenly
+//                 margin-top: 50px
+//                 &_item
+//                     width: 100px
+//                     height: 35px
+
+// .blockTop
+//     display: flex
+// .rayting
+//     font-size: 15px

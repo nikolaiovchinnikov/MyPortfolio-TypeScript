@@ -4,10 +4,16 @@
     margin-right: auto;
 }
 .dark {
-    background-color: #000;
-    color: white;
+    background-color: #000 !important;
+    color: white !important;
 }
 .light {
-    color: #000;
-    background-color: white;
+    color: #000 !important;
+    background-color: white !important;
+}
+.shadowBoxImg {
+    box-shadow: inset 0px 0px 27px 41px #000
+}
+.transparent {
+    background-color: transparent !important;
 }
