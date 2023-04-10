@@ -13,7 +13,7 @@ import  {
 
 const FilmNewsTops = () => {
     return (
-        <CCard style={{border:'none',backgroundColor:'transparent'}} className='my-5'>
+        <CCard style={{border:'none',backgroundColor:'transparent'}} className='my-5 myContainer'>
             <CCardHeader style={{backgroundColor:'transparent'}} component="h1">Списки</CCardHeader>
             <CCardBody>
             <CCardGroup style={{gap:"40px"}}>

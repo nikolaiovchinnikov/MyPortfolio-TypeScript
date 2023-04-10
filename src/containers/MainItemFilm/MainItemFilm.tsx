@@ -31,7 +31,7 @@ const MainItemFilm = ({isColorMod}:IFilmApi) => {
     //     }
     // },[urlPremiere])
     return (
-        <div className={[styles.boxItemImg,'container'].join(' ')}>
+        <div className={[styles.boxItemImg,'myContainer'].join(' ')}>
             <CCard style={{border:'none'}} className={["my-5 ",isColorMod?'dark':'light'].join(" ")}>
                 <CRow className="g-0">
                 <CCol md={4}>

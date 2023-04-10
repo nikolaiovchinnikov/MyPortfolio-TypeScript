@@ -19,7 +19,7 @@ const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
     let colorModStyle = isColorMod?'dark':'light';
     return (
         <header className={[styles.FilmHeader, colorModStyle].join(' ')}>
-            <div className="container">
+            <div className="myContainer">
                 <div className={styles.filmHeaderBOX}>
                     <CDropdown alignment={{ lg: 'start' }} variant="btn-group" dark={isColorMod}>
                         <div className={styles.Boxlogo}>

@@ -46,7 +46,7 @@ const FilmItemGrid = () => {
     
     
     return (
-                <div style={{display:'flex',flexDirection: 'column'}} >
+                <div className='my-5 myContainer' style={{display:'flex',flexDirection: 'column'}} >
                     <div className={styles.containerCard}>
                         {[1,2,3,4,5].map((value => {
                             return <div 
