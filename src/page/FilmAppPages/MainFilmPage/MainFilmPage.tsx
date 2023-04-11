@@ -4,7 +4,7 @@ import {api_v_2_1, api_v_2_2, getRequest} from '../../../scripts/axsios/axsios';
 import FilmHeader from '../../../containers/FilmHeader/FilmHeader';
 import MainItemFilm from '../../../containers/MainItemFilm/MainItemFilm';
 import FilmItemGrid from '../../../containers/FilmItemGrid/FilmItemGrid';
-import FilmNewsTops from '../../../containers/FilmNewsTops/FilmNewsTops';
+import FilmNewsTops from '../../../containers/FilmNewsList/FilmNewsList';
 const MainFilmPage = () => {
     const [isColorMod, setColor] = useState(false)
     const changecolorMod = () => {
@@ -33,7 +33,6 @@ const MainFilmPage = () => {
                 <FilmItemGrid isColorMod={isColorMod} />
                 <FilmNewsTops isColorMod={isColorMod} />
             </div>
-            
         </>
     )
 }

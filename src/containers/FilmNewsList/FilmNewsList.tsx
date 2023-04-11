@@ -1,4 +1,4 @@
-import styles  from './FilmNewsTops.module.scss'
+import styles  from './FilmNewsList.module.scss'
 import  {
     CButton,
     CCardHeader,
@@ -9,11 +9,11 @@ import  {
     CCardBody,
     CCardText
 } from '@coreui/react'
-interface IFilmNewsTops {
+interface IFilmNewsList {
     isColorMod:boolean 
 }
 
-const FilmNewsTops = ({isColorMod}:IFilmNewsTops) => {
+const FilmNewsTops = ({isColorMod}:IFilmNewsList) => {
     return (
         <CCard style={{border:'none',backgroundColor:'transparent'}} className='my-5 myContainer'>
             <CCardHeader style={{backgroundColor:'transparent'}} component="h1">Списки</CCardHeader>

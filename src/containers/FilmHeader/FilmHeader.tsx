@@ -19,7 +19,7 @@ const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
     const navigate = useNavigate();
     const directionPage = (e:React.MouseEvent<HTMLButtonElement>) => {
         let inputElement = e.currentTarget.parentNode?.nextSibling as HTMLInputElement;
-        const param = createSearchParams({name: inputElement.value})
+        const param = createSearchParams({name: inputElement.value,colorMod:String(isColorMod)})
         console.log(param.toString())
         navigate({
             pathname:'/film/item',
@@ -53,7 +53,7 @@ const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
                     dark={isColorMod}>
                         <div className={[styles.Boxlogo, isShowDropdown ? specialCase : ""].join(" ")}>
                             <CDropdownToggle color={isColorMod?'dark':'light'}>
-                                <img className={styles.logo} src="img/logo.png" alt="logo" />
+                                <img className={styles.logo} src="/img/Logo.png" alt="logo" />
                             </CDropdownToggle>
                             <h3 
                             className={
