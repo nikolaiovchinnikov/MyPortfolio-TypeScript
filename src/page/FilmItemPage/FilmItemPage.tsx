@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom"
 import{ useState,useEffect } from 'react'
 import FilmHeader from "../../containers/FilmHeader/FilmHeader"
+import FilmSerchItem from "../../containers/FilmSerchItem/FilmSerchItem"
 const parseParam = (param:URLSearchParams) => {
     return Object.fromEntries(param)
 }
@@ -27,6 +28,7 @@ const FilmItemPage = () => {
     return (
         <div>
             <FilmHeader isColorMod={isColorMod} changeColorMod={changecolorMod}/>
+            <FilmSerchItem/>
         </div>
     )
 }

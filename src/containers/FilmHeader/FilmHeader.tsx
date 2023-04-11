@@ -16,6 +16,9 @@ import '@coreui/coreui/dist/css/coreui.min.css'
 import { IFilmHeader } from '../../interface/interfaceApp';
 
 const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
+
+
+    const [valueIsLenghtInput,setvalueIsLenghtInput] = useState(true)
     const navigate = useNavigate();
     const directionPage = (e:React.MouseEvent<HTMLButtonElement>) => {
         let inputElement = e.currentTarget.parentNode?.nextSibling as HTMLInputElement;
@@ -41,10 +44,12 @@ const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
     }
     let specialCase = isColorMod? styles.showDrop : styles.showDropWhite
     let colorModStyle = isColorMod?'dark':'light';
+
+
     return (
         <header className={[styles.FilmHeader, colorModStyle].join(' ')}>
-            <div className="myContainer">
-                <div className={styles.filmHeaderBOX}>
+            <div style={{height:'100%'}} className="myContainer">
+                <div style={{height:'100%'}} className={styles.filmHeaderBOX}>
                     <CDropdown 
                     onHide={chengeHidenDropdown}
                     onShow={chengeShowDropdown} 
@@ -73,6 +78,15 @@ const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
 
                     <div className={styles.BoxSearch}>
                         <CFormInput
+                        onChange={(e)=>{
+                            e.preventDefault();
+                            if (e.target.value.length > 0){
+                                setvalueIsLenghtInput(false)
+                            }else {
+                                setvalueIsLenghtInput(true)
+                            }
+                        }}
+                        
                         className={colorModStyle}
                         style={{border:isColorMod?"1px solid #fff":"1px solid #000",width:'340px'}}
                         type="text"
@@ -80,7 +94,7 @@ const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
                         placeholder="Введите запрос"
                         aria-label="sm input example"
                         label={
-                        <button onClick={(e) => directionPage (e)} className={styles.btnsInput}>
+                        <button disabled={valueIsLenghtInput} onClick={(e) => directionPage (e)} className={styles.btnsInput}>
                             <CIcon style={{color:isColorMod?"#fff":"#000"}} icon={cilSearch}/>
                         </button>}
                         />
