@@ -1,11 +1,12 @@
 import CIcon from '@coreui/icons-react';
 import { useState } from 'react';
-import  {
-    CButton, 
-    CFormInput, 
-    CDropdown, 
-    CDropdownToggle, 
-    CDropdownMenu, 
+import { createSearchParams, useNavigate } from 'react-router-dom';
+import {
+    CButton,
+    CFormInput,
+    CDropdown,
+    CDropdownToggle,
+    CDropdownMenu,
     CDropdownItem,
     CDropdownDivider
 } from '@coreui/react'
@@ -15,6 +16,18 @@ import '@coreui/coreui/dist/css/coreui.min.css'
 import { IFilmHeader } from '../../interface/interfaceApp';
 
 const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
+    const navigate = useNavigate();
+    const directionPage = (e:React.MouseEvent<HTMLButtonElement>) => {
+        let inputElement = e.currentTarget.parentNode?.nextSibling as HTMLInputElement;
+        const param = createSearchParams({name: inputElement.value})
+        console.log(param.toString())
+        navigate({
+            pathname:'/film/item',
+            search: '?' + param.toString()
+        });
+
+    }
+    
     const [isShowDropdown, setIsShowDropdown] = useState(false)
     const chengeShowDropdown = () => {
         let copyIsShowDropdown = isShowDropdown;
@@ -67,7 +80,7 @@ const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
                         placeholder="Введите запрос"
                         aria-label="sm input example"
                         label={
-                        <button className={styles.btnsInput}>
+                        <button onClick={(e) => directionPage (e)} className={styles.btnsInput}>
                             <CIcon style={{color:isColorMod?"#fff":"#000"}} icon={cilSearch}/>
                         </button>}
                         />
@@ -76,8 +89,8 @@ const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
                     <CButton 
                         style={{width:'150px'}}
                         size='sm'
-                        onClick={changeColorMod} 
-                        color={!isColorMod ? 'dark' : 'light'} 
+                        onClick={changeColorMod}
+                        color={!isColorMod ? 'dark' : 'light'}
                         variant="outline">
                         {!isColorMod ? 'Темный режим' : 'Светлый режим'}
                     </CButton>
