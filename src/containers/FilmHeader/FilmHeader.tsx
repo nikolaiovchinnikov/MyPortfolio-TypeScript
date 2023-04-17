@@ -14,23 +14,27 @@ import  {cilSearch}  from '@coreui/icons';
 import styles from './FilmHeader.module.scss';
 import '@coreui/coreui/dist/css/coreui.min.css';
 import { IFilmHeader } from '../../interface/interfaceApp';
-import {api_v_2_1, api_v_2_2, getRequest} from '../../scripts/axsios/axsios';
+import {api_v_2_1, getRequest} from '../../scripts/axsios/axsios';
 interface IFILMAPI {
     filmId:number
     nameRu:string
 }
 let itemlist:IFILMAPI[] = []
 const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
-
-
+    const [isShowDropdown, setIsShowDropdown] = useState(false);
     const [valueIsLenghtInput,setvalueIsLenghtInput] = useState(true)
     const [stateItemlist,setStateItemlist] = useState(itemlist)
+    let specialCase = isColorMod? styles.showDrop : styles.showDropWhite;
+    let colorModStyle = isColorMod?'dark':'light';
     const navigate = useNavigate();
+
     const directionPage = (e:React.MouseEvent<HTMLButtonElement>) => {
         let inputElement = e.currentTarget.parentNode?.nextSibling as HTMLInputElement;
+        const optionsElement = inputElement.nextElementSibling?.childNodes[0] as  HTMLOptionElement
         const param = createSearchParams({
             name: inputElement.value,
-            colorMod:String(isColorMod)
+            colorMod:String(isColorMod),
+            id:optionsElement.id
         });
         navigate({
             pathname:'/film/item',
@@ -38,22 +42,18 @@ const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
         });
     }
     
-    const [isShowDropdown, setIsShowDropdown] = useState(false);
     const chengeShowDropdown = () => {
         let copyIsShowDropdown = isShowDropdown;
         copyIsShowDropdown = true;
         setIsShowDropdown(copyIsShowDropdown);
     }
+
     const chengeHidenDropdown = () => {
         let copyIsShowDropdown = isShowDropdown;
         copyIsShowDropdown = false;
         setIsShowDropdown(copyIsShowDropdown);
     }
-    let specialCase = isColorMod? styles.showDrop : styles.showDropWhite;
-    let colorModStyle = isColorMod?'dark':'light';
     
-    
-
     return (
         <header className={[styles.FilmHeader, colorModStyle].join(' ')}>
             <div style={{height:'100%'}} className="myContainer">
@@ -94,7 +94,6 @@ const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
                                 const request = await getRequest(`/search-by-keyword?keyword=${e.target.value}&page=1`, api_v_2_1)
                                 itemlist = request.films
                                 setStateItemlist(itemlist)
-                                console.log(request.films[0].filmId)
                             }else {
                                 setvalueIsLenghtInput(true);
                             }
@@ -113,14 +112,13 @@ const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
                         />
                         <datalist id="item-list">
                             {stateItemlist.map(value => {
-                               return <option key={value.filmId} value={value.nameRu}></option>
+                               return <option id={String(value.filmId)} key={value.filmId} value={value.nameRu}></option>
                             })}
                             
                             
                         </datalist>
                     </div>
                     
-
                     <CButton 
                         style={{width:'150px'}}
                         size='sm'

@@ -7,8 +7,10 @@ const parseParam = (param:URLSearchParams) => {
     return Object.fromEntries(param)
 }
 const FilmItemPage = () => {
+    const [stateUrl, setUrl] = useState('')
     const [isColorMod, setColor] = useState(false)
     const [serchParam] = useSearchParams()
+    console.log(serchParam)
     const valueSerchParam = parseParam(serchParam)
     // getRequest("/search-by-keyword?keyword=%D0%BC%D0%B0%D1%82%D1%80%D0%B8%D1%86%D0%B0&page=1",api_v_2_1)
     useEffect(()=>{
@@ -18,12 +20,23 @@ const FilmItemPage = () => {
             setColor(true)
         }
     },[valueSerchParam.colorMod])
-    // useEffect(()=>{
-    //     (async function () {
-    //         const request = await getRequest(`/search-by-keyword?keyword=${valueSerchParam.name}&page=1`,api_v_2_1)
-    //         console.log(request.films[0].filmId)
-    //     })();
-    // },[valueSerchParam.name])
+    useEffect(()=>{
+        (async function () {
+            const request = await getRequest(`/${valueSerchParam.id}/videos`,api_v_2_2)
+            for (let v of request.items) {
+                if(v.site === 'YOUTUBE'){
+                    // const youtubeUrl = url.pathname.replace('/', '')
+                    
+                    // youtubeUrl.split("").reverse().join().substring(0,11)
+                    setUrl(v.url.split("").reverse().join().substring(0,11))
+                    console.log(v.url.split("").reverse().join('').substring(0,11).split("").reverse().join(''))
+                    break
+                }
+                
+            }
+            console.log(request)
+        })();
+    },[valueSerchParam.id])
     const changecolorMod = () => {
         let copyIsColorMod = isColorMod
         if (copyIsColorMod) {
@@ -37,7 +50,7 @@ const FilmItemPage = () => {
     return (
         <div className={colorModStyle}>
             <FilmHeader isColorMod={isColorMod} changeColorMod={changecolorMod}/>
-            <FilmSerchItem isColorMod={isColorMod} />
+            <FilmSerchItem idVideo={stateUrl} isColorMod={isColorMod} />
         </div>
             
         

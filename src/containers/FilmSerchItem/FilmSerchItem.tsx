@@ -11,15 +11,16 @@ import {
 import PlayerAppComponent from '../../components/PlayerAppComponent/PlayerAppComponent'
 interface IIsColorMod {
     isColorMod:boolean
+    idVideo:string
 }
-const FilmSerchItem = ({isColorMod}:IIsColorMod) => {
+const FilmSerchItem = ({isColorMod,idVideo}:IIsColorMod) => {
     let colorModStyle = isColorMod?'dark':'light';
     return (
         <main className={'myContainer'}>
             <CCard style={{borderRadius:'0'}} className={[colorModStyle, 'my-5'].join(' ')} >
                 <CRow className="g-0">
                     <CCol className={[styles.playerBlock, 'my-4'].join(' ')} md={8}>
-                        <PlayerAppComponent url="_g9_9hKPyeg"/>
+                        <PlayerAppComponent url={idVideo}/>
                     </CCol>
                     <CCol md={4}>
                         <CCardBody className={styles.blockText}>
