@@ -9,42 +9,50 @@ import {
     CDropdownMenu,
     CDropdownItem,
     CDropdownDivider
-} from '@coreui/react'
+} from '@coreui/react';
 import  {cilSearch}  from '@coreui/icons';
 import styles from './FilmHeader.module.scss';
-import '@coreui/coreui/dist/css/coreui.min.css'
+import '@coreui/coreui/dist/css/coreui.min.css';
 import { IFilmHeader } from '../../interface/interfaceApp';
-
+import {api_v_2_1, api_v_2_2, getRequest} from '../../scripts/axsios/axsios';
+interface IFILMAPI {
+    filmId:number
+    nameRu:string
+}
+let itemlist:IFILMAPI[] = []
 const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
 
 
     const [valueIsLenghtInput,setvalueIsLenghtInput] = useState(true)
+    const [stateItemlist,setStateItemlist] = useState(itemlist)
     const navigate = useNavigate();
     const directionPage = (e:React.MouseEvent<HTMLButtonElement>) => {
         let inputElement = e.currentTarget.parentNode?.nextSibling as HTMLInputElement;
-        const param = createSearchParams({name: inputElement.value,colorMod:String(isColorMod)})
-        console.log(param.toString())
+        const param = createSearchParams({
+            name: inputElement.value,
+            colorMod:String(isColorMod)
+        });
         navigate({
             pathname:'/film/item',
             search: '?' + param.toString()
         });
-
     }
     
-    const [isShowDropdown, setIsShowDropdown] = useState(false)
+    const [isShowDropdown, setIsShowDropdown] = useState(false);
     const chengeShowDropdown = () => {
         let copyIsShowDropdown = isShowDropdown;
-        copyIsShowDropdown = true
-        setIsShowDropdown(copyIsShowDropdown)
+        copyIsShowDropdown = true;
+        setIsShowDropdown(copyIsShowDropdown);
     }
     const chengeHidenDropdown = () => {
         let copyIsShowDropdown = isShowDropdown;
-        copyIsShowDropdown = false
-        setIsShowDropdown(copyIsShowDropdown)
+        copyIsShowDropdown = false;
+        setIsShowDropdown(copyIsShowDropdown);
     }
-    let specialCase = isColorMod? styles.showDrop : styles.showDropWhite
+    let specialCase = isColorMod? styles.showDrop : styles.showDropWhite;
     let colorModStyle = isColorMod?'dark':'light';
-
+    
+    
 
     return (
         <header className={[styles.FilmHeader, colorModStyle].join(' ')}>
@@ -56,7 +64,7 @@ const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
                     alignment={{ lg: 'start' }} 
                     variant="btn-group" 
                     dark={isColorMod}>
-                        <div className={[styles.Boxlogo, isShowDropdown ? specialCase : ""].join(" ")}>
+                        <div className={[styles.Boxlogo, isShowDropdown ? specialCase : ''].join(' ')}>
                             <CDropdownToggle color={isColorMod?'dark':'light'}>
                                 <img className={styles.logo} src="/img/Logo.png" alt="logo" />
                             </CDropdownToggle>
@@ -78,27 +86,40 @@ const FilmHeader = ({isColorMod, changeColorMod}:IFilmHeader) => {
 
                     <div className={styles.BoxSearch}>
                         <CFormInput
-                        onChange={(e)=>{
+                        list='item-list'
+                        onChange={async (e) => {
                             e.preventDefault();
                             if (e.target.value.length > 0){
-                                setvalueIsLenghtInput(false)
+                                setvalueIsLenghtInput(false);
+                                const request = await getRequest(`/search-by-keyword?keyword=${e.target.value}&page=1`, api_v_2_1)
+                                itemlist = request.films
+                                setStateItemlist(itemlist)
+                                console.log(request.films[0].filmId)
                             }else {
-                                setvalueIsLenghtInput(true)
+                                setvalueIsLenghtInput(true);
                             }
                         }}
                         
                         className={colorModStyle}
-                        style={{border:isColorMod?"1px solid #fff":"1px solid #000",width:'340px'}}
+                        style={{border:isColorMod?'1px solid #fff':'1px solid #000',width:'340px'}}
                         type="text"
                         size="sm"
                         placeholder="Введите запрос"
                         aria-label="sm input example"
                         label={
                         <button disabled={valueIsLenghtInput} onClick={(e) => directionPage (e)} className={styles.btnsInput}>
-                            <CIcon style={{color:isColorMod?"#fff":"#000"}} icon={cilSearch}/>
+                            <CIcon style={{color:isColorMod?'#fff':'#000'}} icon={cilSearch}/>
                         </button>}
                         />
+                        <datalist id="item-list">
+                            {stateItemlist.map(value => {
+                               return <option key={value.filmId} value={value.nameRu}></option>
+                            })}
+                            
+                            
+                        </datalist>
                     </div>
+                    
 
                     <CButton 
                         style={{width:'150px'}}
